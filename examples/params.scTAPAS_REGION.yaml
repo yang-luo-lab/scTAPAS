@@ -1,0 +1,22 @@
+# scTAPAS_REGION — impute a single arbitrary interval as one QUILT2 region.
+# Run with:
+#   nextflow run workflows/sctapas_quilt2.nf -entry scTAPAS_REGION -params-file examples/params.scTAPAS_REGION.yaml
+
+# --- output ---
+outdir: /path/to/work/sctapas_region
+
+# --- inputs / reference ---
+bam_pattern:         "/path/to/bams/*.bam"
+genetic_map_pattern: /path/to/reference_panel/CEU-chr5-final.b38.txt.gz
+thouG_vcf_pattern:   /path/to/reference_panel/CCDG_14151_B01_GRM_WGS_2020-08-05_chr5.filtered.shapeit2-duohmm-phased.vcf.gz
+ref_fasta:           /path/to/references/GRCh38/genome.fa
+
+# --- region to impute (hg38 bp) ---
+chrom:       "5"          # must match contig naming in the BAMs (see num_chrs)
+region_from: 1000000
+region_to:   5000000      # Recommend imputing chunk of no more than ~6000000bp    
+num_chrs:    true         # BAMs use numeric contig names (5, not chr5)
+
+# --- conda envs ---
+quilt2_conda_env: /path/to/conda/envs/quilt2
+conda_env:        /path/to/conda/envs/sctapas

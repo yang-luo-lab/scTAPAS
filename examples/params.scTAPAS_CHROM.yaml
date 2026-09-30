@@ -1,0 +1,46 @@
+# scTAPAS_CHROM — impute one whole chromosome (auto-chunked, merged, QC-filtered).
+# Optional MHC / ancestry / eQTL stages run on the final VCF.
+# Run with:
+#   nextflow run workflows/sctapas_quilt2.nf -entry scTAPAS_CHROM -params-file examples/params.scTAPAS_CHROM.yaml
+
+# --- output ---
+outdir: /path/to/work/sctapas_chrom
+
+# --- inputs / reference ---
+bam_pattern:         "/path/to/bams/*.bam"
+genetic_map_pattern: /path/to/reference_panel/CEU-chr6-final.b38.txt.gz
+thouG_vcf_pattern:   /path/to/reference_panel/CCDG_14151_B01_GRM_WGS_2020-08-05_chr6.filtered.shapeit2-duohmm-phased.vcf.gz
+ref_fasta:           /path/to/references/GRCh38/genome.fa
+
+# --- chromosome ---
+chrom:    "chr6"        # must match contig naming in the BAMs (see num_chrs)
+num_chrs: false       # BAMs use numeric contig names (chr6, not 6)
+
+# --- conda envs ---
+quilt2_conda_env: /path/to/conda/envs/quilt2
+conda_env:        /path/to/conda/envs/sctapas
+
+# ---------------------------------------------------------------------------
+# Optional downstream stages (all disabled by default). Enable as needed.
+# ---------------------------------------------------------------------------
+
+# --- ancestry inference ---
+infer_ancestry: true
+onek_gen_patt:  /path/to/1000G_hg38/all_hg38        # .pgen/.pvar/.psam prefix (no extension)
+onek_rel_sams:  /path/to/1000G_hg38/deg2_hg38.king.cutoff.out.id
+# pcs_to_use: 10
+
+# --- cis-eQTL mapping (tensorQTL) ---
+run_tensorqtl: true
+identifiers:
+  - CD4
+  - CD8
+pseudobulk_pattern: "/path/to/pseudobulks/pseudobulk_IDENTIFIER.bed.gz"   # bgzipped BED
+covariates_pattern: "/path/to/covariates/covariates_IDENTIFIER.txt"
+# qval_lambda: 0.85
+# n_pcs_tqtl: 2
+# insert_position_pcs_tqtl: 2
+
+# --- MHC extraction for HLA imputation ---
+prep_mhc_imp:       false
+# mhc_ref_panel_vars: /path/to/hla_reference_panel_variant_ids.txt

@@ -1,0 +1,28 @@
+# scTAPAS_AUTO — impute all autosomes (chr1–chr22). No `chroms` list needed.
+# Reference patterns MUST use the CHROM placeholder (substituted as chr1 ... chr22).
+# Run with:
+#   nextflow run workflows/sctapas_quilt2.nf -entry scTAPAS_AUTO -params-file examples/params.scTAPAS_AUTO.yaml
+
+# --- output ---
+outdir: /path/to/work/sctapas_auto
+
+# --- inputs / reference (note the CHROM placeholder) ---
+bam_pattern:         "/path/to/bams/*.bam"        # add CHROM if BAMs are split by chromosome
+genetic_map_pattern: /path/to/reference_panel/CEU-CHROM-final.b38.txt.gz
+thouG_vcf_pattern:   /path/to/reference_panel/CCDG_..._CHROM.filtered.shapeit2-duohmm-phased.vcf.gz
+ref_fasta:           /path/to/references/GRCh38/genome.fa
+
+# BAMs use numeric contig names (1..22)? Reference files are still looked up as chr1..chr22.
+num_chrs: true
+
+# --- conda envs ---
+quilt2_conda_env: /path/to/conda/envs/quilt2
+conda_env:        /path/to/conda/envs/sctapas
+
+# ---------------------------------------------------------------------------
+# Optional downstream stages (all disabled by default). See params.scTAPAS_CHROM.yaml
+# for the full set of ancestry / eQTL / MHC parameters.
+# ---------------------------------------------------------------------------
+infer_ancestry: false
+run_tensorqtl:  false
+prep_mhc_imp:   false

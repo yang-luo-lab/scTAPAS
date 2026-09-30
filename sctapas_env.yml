@@ -1,0 +1,29 @@
+name: sctapas
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+- python=3.11
+- bcftools
+- plink2
+- htslib
+- r-base
+- bioconductor-qvalue
+- matplotlib
+- bioconda::plink
+- conda-forge::scanpy
+- conda-forge::python-igraph
+- conda-forge::leidenalg
+- pip
+- pip:
+  - numpy
+  - pandas
+  - pandas-plink
+  - Pgenlib>=0.90.1
+  - pyarrow
+  - qtl
+  - rpy2
+  - scipy
+  - torch
+  - tensorqtl

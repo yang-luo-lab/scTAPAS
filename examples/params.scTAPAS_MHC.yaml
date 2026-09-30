@@ -1,0 +1,27 @@
+# scTAPAS_MHC — impute the MHC region on chr6 as a single QUILT2 region.
+# Run with:
+#   nextflow run workflows/sctapas_quilt2.nf -entry scTAPAS_MHC -params-file examples/params.scTAPAS_MHC.yaml
+
+# --- output ---
+outdir: /path/to/work/sctapas_mhc
+
+# --- inputs / reference ---
+bam_pattern:         "/path/to/bams/*.bam"
+genetic_map_pattern: /path/to/reference_panel/CEU-chr6-final.b38.txt.gz
+thouG_vcf_pattern:   /path/to/reference_panel/CCDG_14151_B01_GRM_WGS_2020-08-05_chr6.filtered.shapeit2-duohmm-phased.vcf.gz
+ref_fasta:           /path/to/references/GRCh38/genome.fa
+
+# --- MHC region (hg38 bp) ---
+mhc_from: 28000000
+mhc_to:   34000000
+
+# BAMs use numeric contig names (6, not chr6)? Reference files are still looked up as chr6.
+num_chrs: true
+
+# --- conda envs ---
+quilt2_conda_env: /path/to/conda/envs/quilt2
+conda_env:        /path/to/conda/envs/sctapas
+
+# --- optional: extract MHC variants for HLA imputation (e.g. Michigan Imputation Server) ---
+prep_mhc_imp:       false
+# mhc_ref_panel_vars: /path/to/hla_reference_panel_variant_ids.txt   # required if prep_mhc_imp: true
