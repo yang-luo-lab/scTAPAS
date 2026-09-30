@@ -33,7 +33,7 @@ The main entry pipelines differ by the genomic interval they impute:
 Clone the repository (typically on HPC):
 
 ```bash
-git clone git@github.com:yang-luo-lab/sctapas.git
+git clone git@github.com:yang-luo-lab/scTAPAS.git
 cd scTAPAS
 ```
 
