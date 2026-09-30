@@ -29,3 +29,4 @@ conda_env:        /path/to/conda/envs/sctapas
 infer_ancestry: false
 run_tensorqtl:  false
 prep_mhc_imp:   false
+# mhc_ref_panel_vars: /path/to/scTAPAS/hla_ref_snps_v2_hg38.txt   # required if prep_mhc_imp: true

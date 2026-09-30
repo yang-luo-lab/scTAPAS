@@ -43,4 +43,4 @@ covariates_pattern: "/path/to/covariates/covariates_IDENTIFIER.txt"
 
 # --- MHC extraction for HLA imputation ---
 prep_mhc_imp:       false
-# mhc_ref_panel_vars: /path/to/hla_reference_panel_variant_ids.txt
+# mhc_ref_panel_vars: /path/to/scTAPAS/hla_ref_snps_v2_hg38.txt   # required if prep_mhc_imp: true

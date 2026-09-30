@@ -313,4 +313,4 @@ If you use scTAPAS, please cite the associated manuscript once available.
 
 ## License
 
-Please include a repository `LICENSE` file before public release (if not already present), and state the chosen license here.
+MIT license.

@@ -24,4 +24,4 @@ conda_env:        /path/to/conda/envs/sctapas
 
 # --- optional: extract MHC variants for HLA imputation (e.g. Michigan Imputation Server) ---
 prep_mhc_imp:       false
-# mhc_ref_panel_vars: /path/to/hla_reference_panel_variant_ids.txt   # required if prep_mhc_imp: true
+# mhc_ref_panel_vars: /path/to/scTAPAS/hla_ref_snps_v2_hg38.txt   # required if prep_mhc_imp: true
